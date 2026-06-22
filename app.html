@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正在跳轉…</title>
+<style>
+  body { font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; text-align: center; padding-top: 60px; color: #333; }
+  .spinner { width: 32px; height: 32px; margin: 0 auto 20px; border: 3px solid #ddd; border-top-color: #555; border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  a { color: #1a73e8; }
+</style>
+</head>
+<body>
+<div class="spinner"></div>
+<p>正在前往對應的下載頁面…</p>
+
+<script>
+(function () {
+  // ====== 請把下面三個網址改成你自己的 ======
+  var IOS_URL      = "https://apps.apple.com/app/idXXXXXXXXX";              // iOS App Store
+  var ANDROID_URL  = "https://play.google.com/store/apps/details?id=XXX";   // Android Play Store
+  var FALLBACK_URL = "https://your-website.com";                            // 電腦／其他裝置
+  // ==========================================
+
+  var ua = navigator.userAgent || navigator.vendor || "";
+
+  if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+    location.replace(IOS_URL);
+  } else if (/android/i.test(ua)) {
+    location.replace(ANDROID_URL);
+  } else {
+    location.replace(FALLBACK_URL);
+  }
+})();
+</script>
+
+<noscript>
+  <p>請手動選擇你的裝置：
+    <a href="https://apps.apple.com/app/idXXXXXXXXX">iOS</a> |
+    <a href="https://play.google.com/store/apps/details?id=XXX">Android</a>
+  </p>
+</noscript>
+</body>
+</html>
